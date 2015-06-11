@@ -2,13 +2,13 @@ package xyz.yhsj.yhui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import xyz.yhsj.yhui.base.YH_Activity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends YH_Activity {
 
     private Toolbar toolbar;
 
