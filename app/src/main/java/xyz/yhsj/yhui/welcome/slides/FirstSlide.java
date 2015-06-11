@@ -13,5 +13,6 @@ public class FirstSlide extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.intro, container, false);
         return v;
+
     }
 }

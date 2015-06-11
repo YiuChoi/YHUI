@@ -42,4 +42,5 @@ dependencies {
     compile 'com.android.support:design:22.2.0'
     compile 'com.mikepenz:iconics:1.0.2@aar'
     compile project(':Library')
+    compile files('libs/yhutils.jar')
 }
