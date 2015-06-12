@@ -11,7 +11,7 @@ import xyz.yhsj.yhui.R;
 public class SecondSlide extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.intro2, container, false);
+        View v = inflater.inflate(R.layout.guide_intro2, container, false);
         return v;
     }
 }

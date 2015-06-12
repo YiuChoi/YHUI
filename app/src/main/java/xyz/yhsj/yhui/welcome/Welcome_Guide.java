@@ -3,7 +3,7 @@ package xyz.yhsj.yhui.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import xyz.yhsj.library.activity.AppIntro;
-import xyz.yhsj.yhui.MainActivity;
+import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhui.welcome.slides.FirstSlide;
 import xyz.yhsj.yhui.welcome.slides.FourthSlide;
 import xyz.yhsj.yhui.welcome.slides.SecondSlide;

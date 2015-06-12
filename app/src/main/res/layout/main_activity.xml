@@ -9,7 +9,7 @@
         android:fitsSystemWindows = "true">
 
 
-    <include layout = "@layout/include_list_viewpager"/>
+    <include layout = "@layout/main_content"/>
 
 
 
@@ -19,7 +19,7 @@
             android:layout_width = "wrap_content"
             android:layout_gravity = "start"
             android:fitsSystemWindows = "true"
-            app:headerLayout = "@layout/nav_header"
+            app:headerLayout = "@layout/main_nav_header"
             app:menu = "@menu/drawer_view"/>
 
 </android.support.v4.widget.DrawerLayout>

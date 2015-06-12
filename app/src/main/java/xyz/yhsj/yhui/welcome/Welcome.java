@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import xyz.yhsj.yhui.MainActivity;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.YH_Activity;
+import xyz.yhsj.yhui.login.Login;
+import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhutils.tools.sp.SharePreferenceUtil;
 
 public class Welcome extends YH_Activity {
@@ -22,7 +23,7 @@ public class Welcome extends YH_Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.welcome_activity_main);
 
         handler = new Jump_Handler();
 
@@ -44,6 +45,30 @@ public class Welcome extends YH_Activity {
 
     }
 
+    /**
+     * 跳转到主页
+     */
+    private void goHome() {
+        startActivity(new Intent(Welcome.this, MainActivity.class));
+        finish();
+    }
+
+    /**
+     * 跳转到登录
+     */
+    private void Login() {
+        startActivity(new Intent(Welcome.this, Login.class));
+        finish();
+    }
+
+    /**
+     * 跳转到引导
+     */
+    private void goGuide() {
+        Intent i = new Intent(Welcome.this, Welcome_Guide.class);
+        startActivity(i);
+        finish();
+    }
 
     /**
      * 跳转线程
@@ -67,31 +92,6 @@ public class Welcome extends YH_Activity {
 
             }
         }
-    }
-
-    /**
-     * 跳转到主页
-     */
-    private void goHome() {
-        startActivity(new Intent(Welcome.this, MainActivity.class));
-        finish();
-    }
-
-    /**
-     * 跳转到登录
-     */
-    private void Login() {
-        startActivity(new Intent(Welcome.this, MainActivity.class));
-        finish();
-    }
-
-    /**
-     * 跳转到引导
-     */
-    private void goGuide() {
-        Intent i = new Intent(Welcome.this, Welcome_Guide.class);
-        startActivity(i);
-        finish();
     }
 
 
