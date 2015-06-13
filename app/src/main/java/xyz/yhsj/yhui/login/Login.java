@@ -10,7 +10,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import xyz.yhsj.library.view.shimmer.Shimmer;
+import xyz.yhsj.library.view.shimmer.ShimmerTextView;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.YH_Activity;
 import xyz.yhsj.yhui.main.MainActivity;
@@ -20,18 +24,31 @@ import xyz.yhsj.yhui.main.MainActivity;
  */
 public class Login extends YH_Activity {
     // UI references.
+    @ViewInject(R.id.email)
     private EditText mEmailView;
+
+    @ViewInject(R.id.password)
     private EditText mPasswordView;
+
+    @ViewInject(R.id.email_sign_in_button)
+    private Button mEmailSignInButton;
+
+    @ViewInject(R.id.title)
+    private ShimmerTextView title;
+
+    private Shimmer shimmer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
 
-        // Set up the login form.
-        mEmailView = (EditText) findViewById(R.id.email);
+        ViewUtils.inject(this);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+
+        shimmer = new Shimmer();
+        shimmer.setDuration(2000);
+        shimmer.start(title);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -44,7 +61,6 @@ public class Login extends YH_Activity {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +135,7 @@ public class Login extends YH_Activity {
 
 
         startActivity(new Intent(Login.this, MainActivity.class));
+        finish();
     }
 
 }

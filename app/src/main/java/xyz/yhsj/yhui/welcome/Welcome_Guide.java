@@ -3,6 +3,7 @@ package xyz.yhsj.yhui.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import xyz.yhsj.library.activity.AppIntro;
+import xyz.yhsj.yhui.login.Login;
 import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhui.welcome.slides.FirstSlide;
 import xyz.yhsj.yhui.welcome.slides.FourthSlide;
@@ -31,7 +32,7 @@ public class Welcome_Guide extends AppIntro {
 
     @Override
     public void onDonePressed() {
-        startActivity(new Intent(Welcome_Guide.this, MainActivity.class));
+        startActivity(new Intent(Welcome_Guide.this, Login.class));
         finish();
     }
 

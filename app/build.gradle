@@ -41,6 +41,8 @@ dependencies {
     compile project(':Library')
     compile files('libs/yhutils.jar')
     compile 'com.android.support:appcompat-v7:22.2.0'
+    //5.0设计兼容库
     compile 'com.android.support:design:22.2.0'
+    //材料设计图标
     compile 'com.mikepenz:iconics:1.0.2@aar'
 }
