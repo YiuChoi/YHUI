@@ -14,7 +14,7 @@ public class YH_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        httpUtils = HttpUtils_Base.init(getApplicationContext());
+        httpUtils = HttpUtils_Base.httpUtils;
 
     }
 }

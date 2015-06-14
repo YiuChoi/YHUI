@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import xyz.yhsj.yhui.R;
 
 
-public class FirstSlide extends Fragment {
+public class Slide_Third extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.guide_intro, container, false);
+        View v = inflater.inflate(R.layout.guide_intro3, container, false);
         return v;
-
     }
 }
