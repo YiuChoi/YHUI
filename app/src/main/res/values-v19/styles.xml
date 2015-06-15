@@ -4,6 +4,6 @@
     <style name = "AppTheme" parent = "Base.AppTheme">
         <!--这两句用于状态栏透明-->
         <item name = "android:windowTranslucentStatus">true</item>
-        <item name = "android:windowTranslucentNavigation">true</item>
+        <item name = "android:windowTranslucentNavigation">false</item>
     </style>
 </resources>

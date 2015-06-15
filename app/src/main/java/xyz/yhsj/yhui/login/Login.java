@@ -12,8 +12,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
@@ -24,10 +22,8 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import xyz.yhsj.library.view.shimmer.Shimmer;
-import xyz.yhsj.library.view.shimmer.ShimmerTextView;
+import xyz.yhsj.library.activity.ShimmerFrameLayout;
 import xyz.yhsj.yhui.R;
-import xyz.yhsj.yhui.base.HttpUtils_Base;
 import xyz.yhsj.yhui.base.YH_Activity;
 import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhutils.tools.keyboard.KeyBoardUtils;
@@ -38,30 +34,22 @@ import xyz.yhsj.yhutils.tools.sp.SharePreferenceUtil;
  */
 public class Login extends YH_Activity {
 
-    @ViewInject(R.id.username)
-    private TextInputLayout mUserName;
-
-    @ViewInject(R.id.password)
-    private TextInputLayout mPassword;
-
-    @ViewInject(R.id.signin_button)
-    private AppCompatButton mSignInButton;
-
-    @ViewInject(R.id.title)
-    private ShimmerTextView title;
-
-    @ViewInject(R.id.login_form)
-    private ScrollView scrollView;
-
-    @ViewInject(R.id.re_password)
-    private AppCompatCheckBox checkBox_re_psd;
-
-    private Shimmer shimmer;
-
-
     public static final String CHECKBOX_RE_PSD = "checkbox_re_psd";
     public static final String USERNAME = "username";
     public static final String PASSORD = "password";
+    @ViewInject(R.id.username)
+    private TextInputLayout mUserName;
+    @ViewInject(R.id.password)
+    private TextInputLayout mPassword;
+    @ViewInject(R.id.signin_button)
+    private AppCompatButton mSignInButton;
+    @ViewInject(R.id.title)
+    private TextView title;
+    @ViewInject(R.id.login_form)
+    private ScrollView scrollView;
+    @ViewInject(R.id.re_password)
+    private AppCompatCheckBox checkBox_re_psd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +64,7 @@ public class Login extends YH_Activity {
      * 初始化
      */
     private void init() {
-        //用来显示标题动画
-        shimmer = new Shimmer();
-        shimmer.setDuration(2000);
-        shimmer.start(title);
+
 
         //用来使错误条显示
         mUserName.setError(" ");
@@ -204,7 +189,7 @@ public class Login extends YH_Activity {
 
         //httpUtils来自父类，请求数据
         httpUtils.send(HttpRequest.HttpMethod.POST,
-                "http://127.0.0.1/login",
+                "http://182.92.96.58:8005/yrt/login",
                 params,
                 new RequestCallBack<String>() {
                     @Override

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android = "http://schemas.android.com/apk/res/android"
+        android:id = "@+id/content"
+        android:paddingTop = "25dp"
+        android:clipToPadding = "false"
+        android:orientation = "vertical"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
+        android:fitsSystemWindows = "true">
+
+    <include layout = "@layout/main_content"/>
+
+    <android.support.design.widget.FloatingActionButton
+            android:id = "@+id/fab"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_gravity = "end|bottom"
+            android:layout_margin = "16dp"
+            android:src = "@drawable/abc_ic_voice_search_api_mtrl_alpha"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

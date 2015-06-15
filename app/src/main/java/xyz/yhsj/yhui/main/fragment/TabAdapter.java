@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 主页tab适配器
  * Created by LOVE on 2015/6/12 012.
  */
 public class TabAdapter extends FragmentPagerAdapter {

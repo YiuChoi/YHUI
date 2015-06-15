@@ -45,4 +45,6 @@ dependencies {
     compile 'com.android.support:design:22.2.0'
     //材料设计图标
     compile 'com.mikepenz:iconics:1.0.2@aar'
+    //带交互的tosat
+    compile 'net.steamcrafted:load-toast:1.0.6'
 }
