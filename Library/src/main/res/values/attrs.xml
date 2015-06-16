@@ -5,10 +5,6 @@
         <attr name = "border_color" format = "color"/>
     </declare-styleable>
 
-    <declare-styleable name="ShimmerView">
-        <attr name="reflectionColor" format="color"/>
-    </declare-styleable>
-
     <declare-styleable name = "ShimmerFrameLayout">
         <attr name = "auto_start" format = "boolean"/>
         <attr name = "base_alpha" format = "float"/>

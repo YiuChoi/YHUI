@@ -22,7 +22,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import xyz.yhsj.library.activity.ShimmerFrameLayout;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.YH_Activity;
 import xyz.yhsj.yhui.main.MainActivity;
@@ -54,7 +53,7 @@ public class Login extends YH_Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login_main);
 
         ViewUtils.inject(this);
         init();

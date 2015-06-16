@@ -1,0 +1,46 @@
+<LinearLayout
+        xmlns:android = "http://schemas.android.com/apk/res/android"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:clickable="true"
+        android:background = "?android:selectableItemBackground"
+        android:orientation = "vertical">
+
+    <LinearLayout
+            android:orientation = "horizontal"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content">
+
+        <TextView
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:id = "@+id/text"
+                android:layout_weight = "1"
+                android:minHeight = "50dp"
+                android:padding = "4dp"/>
+
+        <ImageButton
+                android:id="@+id/more"
+                android:layout_width = "wrap_content"
+                android:layout_height = "match_parent"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:background = "?android:selectableItemBackground"
+                android:src = "@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"/>
+
+    </LinearLayout>
+
+
+    <TextView
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/text1"
+            android:text = "这是测试内容"
+            android:padding = "8dp"
+            android:minHeight = "50dp"/>
+</LinearLayout>
+
+
+
+
+

@@ -13,6 +13,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.YH_Activity;
+import xyz.yhsj.yhui.main.fragment.Fragment_DB;
 import xyz.yhsj.yhui.main.fragment.TabAdapter;
 import xyz.yhsj.yhui.main.fragment.TestFragment;
 
@@ -40,7 +41,7 @@ public class MainActivity extends YH_Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
 
         ViewUtils.inject(this);
 
@@ -88,7 +89,7 @@ public class MainActivity extends YH_Activity {
      */
     private void setupViewPager(ViewPager viewPager) {
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TestFragment("待办"), "待办");
+        adapter.addFragment(new Fragment_DB(), "待办");
         adapter.addFragment(new TestFragment("消息"), "消息");
         adapter.addFragment(new TestFragment("联系人"), "联系人");
         viewPager.setAdapter(adapter);

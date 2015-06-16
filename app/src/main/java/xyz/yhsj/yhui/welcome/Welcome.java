@@ -23,7 +23,7 @@ public class Welcome extends YH_Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome_activity_main);
+        setContentView(R.layout.activity_welcome_main);
 
         handler = new Jump_Handler();
 

@@ -25,7 +25,7 @@ public class TestFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_fragment_test, container, false);
+        View v = inflater.inflate(R.layout.fragment_main_test, container, false);
 
         title = (TextView) v.findViewById(R.id.title);
 
