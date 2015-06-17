@@ -3,18 +3,19 @@ package xyz.yhsj.yhui.main.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import xyz.yhsj.library.viewutils.ItemClickSupport;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.main.adapter.Adapter_RecyclerView_DB;
 
@@ -33,7 +34,6 @@ public class Fragment_DB extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private Adapter_RecyclerView_DB adapter;
-//
 
     public Fragment_DB() {
 
@@ -68,17 +68,16 @@ public class Fragment_DB extends Fragment {
         adapter = new Adapter_RecyclerView_DB(getDummyDatas());
         recyclerView.setAdapter(adapter);
 
-
-        ItemClickSupport itemClick = ItemClickSupport.addTo(recyclerView);
-
-        itemClick.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+        adapter.setOnItemClickListener(new Adapter_RecyclerView_DB.OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(RecyclerView parent, View view, int position, long id) {
-
-                LogUtils.i(view.getId()+"   "+id);
-
-                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+            public void onItemClick(View view, String data) {
+                if (view.getId() == R.id.more) {
+                    showPopupMenu(view);
+                } else {
+                    Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+                }
             }
+
         });
 
 
@@ -109,5 +108,41 @@ public class Fragment_DB extends Fragment {
         }
         return datas;
     }
+
+
+    private void showPopupMenu(View view) {
+        PopupMenu popup = new PopupMenu(getActivity(), view);
+        //Inflating the Popup using xml file
+        String move = "测试";
+
+        popup.getMenuInflater()
+                .inflate(R.menu.menu_more, popup.getMenu());
+        popup.setOnMenuItemClickListener(
+                new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.delete_forever:
+                                Snackbar.make(getView(), "删除", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                break;
+                            case R.id.edit:
+                                Snackbar.make(getView(), "编辑", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                break;
+                            case R.id.move_to_trash:
+                                Snackbar.make(getView(), "添加", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                break;
+                            default:
+                                break;
+                        }
+                        return true;
+                    }
+                });
+
+        popup.show(); //showing popup menu
+    }
+
 
 }
