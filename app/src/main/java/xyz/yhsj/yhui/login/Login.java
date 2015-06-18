@@ -23,6 +23,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import xyz.yhsj.yhui.R;
+import xyz.yhsj.yhui.base.HttpUtils_Client;
 import xyz.yhsj.yhui.base.YH_Activity;
 import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhutils.tools.keyboard.KeyBoardUtils;
@@ -179,44 +180,42 @@ public class Login extends YH_Activity {
 
     public void UserLoginTask(final String username, final String password) {
 
-        final ProgressDialog pd = ProgressDialog.show(Login.this, null, "正在努力登录...");
-
         //拼装参数
         RequestParams params = new RequestParams();
         params.addBodyParameter("account", username);
         params.addBodyParameter("password", password);
 
-        //httpUtils来自父类，请求数据
-        httpUtils.send(HttpRequest.HttpMethod.POST,
-                "http://182.92.96.58:8005/yrt/login",
-                params,
-                new RequestCallBack<String>() {
-                    @Override
-                    public void onLoading(long total, long current, boolean isUploading) {
-                        LogUtils.i(current + "/" + total);
-                    }
 
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        //成功登陆后保存账号密码
-                        SharePreferenceUtil.setValue(Login.this, CHECKBOX_RE_PSD, checkBox_re_psd.isChecked());
-                        SharePreferenceUtil.setValue(Login.this, USERNAME, username);
-                        SharePreferenceUtil.setValue(Login.this, PASSORD, password);
-
-                        pd.dismiss();
-                        LogUtils.i(responseInfo.result);
-                        startActivity(new Intent(Login.this, MainActivity.class));
-                        finish();
-                    }
+        HttpUtils_Client.post(Login.this, true, "http://182.92.96.58:8005/yrt/login", params, new HttpUtils_Client.OnRequestCallBack() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                //成功登陆后保存账号密码
+                SharePreferenceUtil.setValue(Login.this, CHECKBOX_RE_PSD, checkBox_re_psd.isChecked());
+                SharePreferenceUtil.setValue(Login.this, USERNAME, username);
+                SharePreferenceUtil.setValue(Login.this, PASSORD, password);
 
 
-                    @Override
-                    public void onFailure(HttpException error, String msg) {
-                        pd.dismiss();
-                        Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
-                    }
-                });
+                LogUtils.i(responseInfo.result);
+                startActivity(new Intent(Login.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+
+            @Override
+            public void netStatus(boolean isConnected, String netType) {
+                if (!isConnected) {
+                    Snackbar.make(scrollView, "没网搞个锤子？", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+            }
+        });
+
 
     }
 
