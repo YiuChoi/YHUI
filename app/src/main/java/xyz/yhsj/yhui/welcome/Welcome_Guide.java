@@ -25,7 +25,7 @@ public class Welcome_Guide extends AppIntro {
     @Override
     public void onSkipPressed() {
 
-        startActivity(new Intent(Welcome_Guide.this, MainActivity.class));
+        startActivity(new Intent(Welcome_Guide.this, Login.class));
         finish();
 
     }

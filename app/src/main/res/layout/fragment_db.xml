@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<android.support.v4.widget.SwipeRefreshLayout
+<FrameLayout
         xmlns:android = "http://schemas.android.com/apk/res/android"
-        android:id = "@+id/swipe_container"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
         android:background = "@color/md_white_1000">
 
-    <android.support.v7.widget.RecyclerView
-            android:id = "@+id/recycler_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_margin = "4dp"
+            android:id = "@+id/swipe_container"
             android:layout_width = "match_parent"
-            android:layout_height = "match_parent"
-            android:scrollbars = "none"/>
+            android:layout_height = "match_parent">
 
-</android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id = "@+id/recycler_view"
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                android:scrollbars = "none"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <xyz.yhsj.library.view.ProgressBar_Modern
+            android:id = "@+id/progressbar"
+            android:layout_gravity = "bottom"
+            android:layout_width = "match_parent"
+            android:visibility = "gone"
+            android:layout_height = "12dp"/>
+
+</FrameLayout>

@@ -5,7 +5,6 @@
         android:layout_height = "wrap_content"
         android:id = "@+id/card_view"
         android:layout_gravity = "center"
-        app:cardElevation = "6dp"
         app:cardCornerRadius = "6dp">
 
     <include layout="@layout/adapter_recyclerview_item_content"/>

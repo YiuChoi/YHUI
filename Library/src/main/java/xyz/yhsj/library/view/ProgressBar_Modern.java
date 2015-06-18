@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
@@ -188,6 +187,19 @@ public class ProgressBar_Modern extends View {
     @Override
     protected void onWindowVisibilityChanged(int visibility) {
         super.onWindowVisibilityChanged(visibility);
+        if (visibility == View.VISIBLE && !isRunning) {
+            Log.i("ProgressBar_Modern", "可见,运行");
+            start();
+        } else if (visibility == View.GONE && isRunning) {
+            Log.i("ProgressBar_Modern", "不可见，暂停");
+            cancel();
+        }
+    }
+
+
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
         if (visibility == View.VISIBLE && !isRunning) {
             Log.i("ProgressBar_Modern", "可见,运行");
             start();

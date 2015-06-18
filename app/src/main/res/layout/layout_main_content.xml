@@ -12,15 +12,15 @@
             android:layout_height = "?attr/actionBarSize"
             android:theme = "@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme = "@style/ThemeOverlay.AppCompat.Light">
-
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
             android:id = "@+id/tabs"
             android:layout_width = "match_parent"
             app:tabTextColor = "@color/md_blue_100"
-            app:tabIndicatorColor = "@color/md_white_1000"
+            app:tabIndicatorColor = "@color/md_blue_100"
             app:tabSelectedTextColor = "@color/md_white_1000"
+            app:elevation = "4dp"
             android:layout_height = "40dp"/>
 
     <android.support.v4.view.ViewPager
