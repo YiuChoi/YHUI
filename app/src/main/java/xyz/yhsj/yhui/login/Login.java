@@ -1,7 +1,5 @@
 package xyz.yhsj.yhui.login;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -18,14 +16,13 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.HttpUtils_Client;
+import xyz.yhsj.yhui.base.JsonUtil;
 import xyz.yhsj.yhui.base.YH_Activity;
-import xyz.yhsj.yhui.main.MainActivity;
+import xyz.yhsj.yhui.login.model.User;
 import xyz.yhsj.yhutils.tools.keyboard.KeyBoardUtils;
 import xyz.yhsj.yhutils.tools.sp.SharePreferenceUtil;
 
@@ -194,23 +191,27 @@ public class Login extends YH_Activity {
                 SharePreferenceUtil.setValue(Login.this, USERNAME, username);
                 SharePreferenceUtil.setValue(Login.this, PASSORD, password);
 
-
                 LogUtils.i(responseInfo.result);
-                startActivity(new Intent(Login.this, MainActivity.class));
-                finish();
+
+                User user = (User) JsonUtil.jsonToBean(responseInfo.result, User.class);
+
+
+                LogUtils.i(user.getIsPass());
+
+
+//                startActivity(new Intent(Login.this, MainActivity.class));
+//                finish();
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
 
             @Override
             public void netStatus(boolean isConnected, String netType) {
                 if (!isConnected) {
-                    Snackbar.make(scrollView, "没网搞个锤子？", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    Snackbar.make(scrollView, "没网搞个锤子？", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
             }
