@@ -1,5 +1,6 @@
 package xyz.yhsj.yhui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -20,11 +21,12 @@ import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.HttpUtils_Client;
-import xyz.yhsj.yhui.base.JsonUtil;
 import xyz.yhsj.yhui.base.YH_Activity;
 import xyz.yhsj.yhui.login.model.User;
+import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhutils.tools.keyboard.KeyBoardUtils;
 import xyz.yhsj.yhutils.tools.sp.SharePreferenceUtil;
+import xyz.yhsj.yhutils.tools.string.JsonUtil;
 
 /**
  * A login screen that offers login via email/password.
@@ -186,21 +188,40 @@ public class Login extends YH_Activity {
         HttpUtils_Client.post(Login.this, true, "http://182.92.96.58:8005/yrt/login", params, new HttpUtils_Client.OnRequestCallBack() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                //成功登陆后保存账号密码
-                SharePreferenceUtil.setValue(Login.this, CHECKBOX_RE_PSD, checkBox_re_psd.isChecked());
-                SharePreferenceUtil.setValue(Login.this, USERNAME, username);
-                SharePreferenceUtil.setValue(Login.this, PASSORD, password);
 
                 LogUtils.i(responseInfo.result);
 
                 User user = (User) JsonUtil.jsonToBean(responseInfo.result, User.class);
 
+                if ("true".equals(user.getIsPass())) {
+
+                    //成功登陆后保存账号密码
+                    SharePreferenceUtil.setValue(Login.this, CHECKBOX_RE_PSD, checkBox_re_psd.isChecked());
+                    SharePreferenceUtil.setValue(Login.this, USERNAME, username);
+                    SharePreferenceUtil.setValue(Login.this, PASSORD, password);
+
+
+                    if ("".equals(user.getInfo())) {
+
+                        startActivity(new Intent(Login.this, MainActivity.class));
+                        finish();
+
+                    } else {
+                        Snackbar.make(scrollView, user.getInfo(), Snackbar.LENGTH_LONG).setAction("确定", new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(Login.this, MainActivity.class));
+                                finish();
+                            }
+                        }).show();
+                    }
+
+                } else {
+                    Snackbar.make(scrollView, user.getInfo(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
 
                 LogUtils.i(user.getIsPass());
 
-
-//                startActivity(new Intent(Login.this, MainActivity.class));
-//                finish();
             }
 
             @Override

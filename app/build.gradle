@@ -53,5 +53,4 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.2.0'
     //无限加载
     compile 'com.vinaysshenoy:mugen:1.0.0'
-    compile 'com.google.code.gson:gson:2.2.4'
 }
