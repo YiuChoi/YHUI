@@ -2,6 +2,10 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/base/HttpUtils_Client.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/base/dialog/Dialog_Base.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/base/dialog/Dialog_Content.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/base/dialog/Dialog_InfoDialog.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/base/dialog/Dialog_footer.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/xyz/yhsj/yhui/login/model/Account.java" charset="UTF-8" />
   </component>
 </project>

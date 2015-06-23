@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,9 +20,12 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.orhanobut.dialogplus.DialogPlus;
 import xyz.yhsj.yhui.R;
 import xyz.yhsj.yhui.base.HttpUtils_Client;
 import xyz.yhsj.yhui.base.YH_Activity;
+import xyz.yhsj.yhui.base.dialog.Dialog_Base;
+import xyz.yhsj.yhui.base.dialog.Dialog_footer;
 import xyz.yhsj.yhui.login.model.User;
 import xyz.yhsj.yhui.main.MainActivity;
 import xyz.yhsj.yhutils.tools.keyboard.KeyBoardUtils;
@@ -48,6 +52,8 @@ public class Login extends YH_Activity {
     private ScrollView scrollView;
     @ViewInject(R.id.re_password)
     private AppCompatCheckBox checkBox_re_psd;
+
+    private DialogPlus dialogPlus = null;
 
 
     @Override
@@ -137,11 +143,11 @@ public class Login extends YH_Activity {
 
         // 校验用户名
         if (TextUtils.isEmpty(email)) {
-            mUserName.setError("邮箱为空");
+            mUserName.setError("用户名为空");
             focusView = mUserName;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mUserName.setError("邮箱无效");
+            mUserName.setError("用户名无效");
             focusView = mUserName;
             cancel = true;
         }
@@ -207,37 +213,39 @@ public class Login extends YH_Activity {
                         finish();
 
                     } else {
-                        Snackbar.make(scrollView, user.getInfo(), Snackbar.LENGTH_LONG).setAction("确定", new OnClickListener() {
+                        dialogPlus = Dialog_Base.infoDialog(Login.this, "提示", user.getInfo(), Gravity.TOP, new Dialog_footer.onBtnClickListener() {
                             @Override
-                            public void onClick(View v) {
+                            public void setOnCloseClickListener(View v) {
+                            }
+
+                            @Override
+                            public void setOnConfirmClickListener(View v) {
                                 startActivity(new Intent(Login.this, MainActivity.class));
                                 finish();
                             }
-                        }).show();
+                        });
+
+                        dialogPlus.show();
                     }
 
                 } else {
-                    Snackbar.make(scrollView, user.getInfo(), Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Snackbar.make(scrollView, user.getInfo(), Snackbar.LENGTH_LONG).setAction("确定", null).show();
                 }
-
-                LogUtils.i(user.getIsPass());
-
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-                Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Snackbar.make(scrollView, "登录失败，请稍后再试", Snackbar.LENGTH_LONG).setAction("确定", null).show();
             }
 
             @Override
             public void netStatus(boolean isConnected, String netType) {
                 if (!isConnected) {
-                    Snackbar.make(scrollView, "没网搞个锤子？", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Snackbar.make(scrollView, "网络不给力啊！", Snackbar.LENGTH_LONG).setAction("确定", null).show();
                 }
 
             }
         });
-
 
     }
 
